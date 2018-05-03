@@ -1,9 +1,9 @@
-FROM stefanscherer/node-windows:10.0.0
+FROM node:10.0.0-alpine
 
 # Create app directory
-WORKDIR C:\\Webserver
+WORKDIR /usr/src/app
 
-COPY .\\webserver.js .
+COPY ./webserver.js .
 
 EXPOSE 3000
 
