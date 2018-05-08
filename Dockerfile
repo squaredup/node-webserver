@@ -1,9 +1,9 @@
-FROM node:10.0.0-alpine
+FROM microsoft/windowsservercore
 
 # Create app directory
-WORKDIR /usr/src/app
+WORKDIR C:\\Webserver
 
-COPY ./webserver.js .
+COPY .\\webserver.js .
 
 EXPOSE 3000
 
