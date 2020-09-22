@@ -35,23 +35,25 @@ app.get("/requiresAuthentication", (request, response) => {
     });
 });
 
-app.get("/", (request, response) => {
+app.get("*", (request, response) => {
 
     response.header("access-control-allow-origin", "*")
     .status(200)
     .json({
         id: "1a4",
+        url: request.originalUrl,
         body: "call_me_hand2:",
         headers: request.headers,
         data: url.parse(request.url, true).query
     });
 });
 
-app.post("/", (request, response) => {
+app.post("*", (request, response) => {
 
     response.header("access-control-allow.origin", "*")
     .status(200)
     .json({
+        url: request.originalUrl,
         headers: request.headers,
         data: request.body
     });
