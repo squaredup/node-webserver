@@ -36,44 +36,24 @@ app.get("/requiresAuthentication", (request, response) => {
 });
 
 app.get("/", (request, response) => {
-    const urlParts = url.parse(request.url, true);
-    const query = urlParts.query;
 
-    response.writeHead(200, {
-        "Content-Type": "application/json",
-        "access-control-allow-origin": "*"
+    response.header("access-control-allow-origin", "*")
+    .status(200)
+    .json({
+        id: "1a4",
+        body: "call_me_hand2:",
+        headers: request.headers,
+        data: url.parse(request.url, true).query
     });
-
-    const headers = JSON.stringify(request.headers);
-    const data = JSON.stringify(query);
-    response.write(
-        JSON.stringify({
-            id: "1A4",
-            body: ":call_me_hand2:",
-            headers: headers,
-            data: data
-        })
-    );
-    response.end();
 });
 
 app.post("/", (request, response) => {
-    var body = "";
-    request.on("data", function(data) {
-        body += data;
-    });
-    request.on("end", function() {
-        var post = body;
-        response.writeHead(200, {
-            "Content-Type": "application/json",
-            "access-control-allow-origin": "*"
-        });
-        response.write(
-            JSON.stringify({
-                data: post
-            })
-        );
-        response.end();
+
+    response.header("access-control-allow.origin", "*")
+    .status(200)
+    .json({
+        headers: request.headers,
+        data: request.body
     });
 });
 

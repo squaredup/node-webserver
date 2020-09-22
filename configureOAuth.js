@@ -130,9 +130,10 @@ const configureOAuth = (
         allowEmptyState: true,
         authorizationCodeLifetime: accessTokenLifetimeSeconds
     });
-
-    app.use(bodyParser.json());
+    
+    app.use(bodyParser.text({type: ["text/*","application/xml"]}));
     app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.json());
     app.use(({ url, body, headers }, res, next) => {
         log("REQUEST: ", { url, body });
         next();
