@@ -2,7 +2,7 @@ const url = require("url");
 const express = require("express");
 const args = require("./args");
 const configureOAuth = require("./configureOAuth");
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 const app = configureOAuth(express(), args.getOAuthConfiguration(process.argv));
 
