@@ -42,7 +42,7 @@ app.get("*", (request, response) => {
     .json({
         id: "1a4",
         url: request.originalUrl,
-        body: "call_me_hand2:",
+        body: ":call_me_hand2:",
         headers: request.headers,
         data: url.parse(request.url, true).query
     });
