@@ -19,7 +19,7 @@ const configureOAuth = (
         redirectUri = "http://localhost:58816/ext-core-webapi/callback/LocalOAuth"
     }
 ) => {
-    const log = (...args) => console.log(new Date(), ...args);
+    const log = (...args) => console.log((new Date()).toLocaleString(), ...args);
 
     log("OAuth Configuration: ", {
         accessTokenLifetimeSeconds,
