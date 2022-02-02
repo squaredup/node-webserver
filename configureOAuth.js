@@ -16,15 +16,17 @@ const configureOAuth = (
     {
         accessTokenLifetimeSeconds = 45,
         refreshTokenLifetimeSeconds = 90,
-        redirectUri = "http://localhost:58816/ext-core-webapi/callback/LocalOAuth"
-    }
+        redirectUri = "http://localhost:58816/ext-core-webapi/callback/LocalOAuth",
+        noExpiresIn = "false"
+    },
 ) => {
     const log = (...args) => console.log((new Date()).toLocaleString(), ...args);
 
     log("OAuth Configuration: ", {
         accessTokenLifetimeSeconds,
         refreshTokenLifetimeSeconds,
-        redirectUri
+        redirectUri,
+        noExpiresIn
     });
 
     const oauth = new OAuth2Server({
@@ -45,7 +47,7 @@ const configureOAuth = (
                 return client;
             },
             saveAuthorizationCode: (code, client, user) => {
-                log("saveAuthorizationCode ", {
+                log("saveAuthorizationCode", {
                     code,
                     client,
                     user
@@ -63,6 +65,9 @@ const configureOAuth = (
                 return existingCode;
             },
             saveToken: (token, client, user) => {
+                if (noExpiresIn === "true") {
+                    delete token.accessTokenExpiresAt;
+                }
                 log("saveAccessToken ", token);
                 accessTokens.set(token.accessToken, { token, client, user });
                 if (token.refreshToken) {

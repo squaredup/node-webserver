@@ -17,7 +17,8 @@ const getOAuthConfiguration = (processArgs = []) => {
         refreshTokenLifetimeSeconds: toInt(
             getArgValue("--refreshTokenLifetimeSeconds")
         ),
-        redirectUri: getArgValue("--redirectUri")
+        redirectUri: getArgValue("--redirectUri"),
+        noExpiresIn: getArgValue("--no_expires_in")
     };
 };
 
